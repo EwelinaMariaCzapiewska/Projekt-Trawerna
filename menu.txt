@@ -1,0 +1,11 @@
+# Dane Restauracji - menu.txt
+# Format: nazwa | cena | główne składniki
+
+Pizza Margherita | 25 | mąka, ser, pomidory, oliwa
+Pasta Carbonara | 30 | mąka, jajko, boczek, parmezan
+Stek Wołowy | 50 | wołowina, sól, pieprz, czosnęk
+Sałatka Cezara | 20 | sałata, parmezan, grzanki, sosek
+Zupa Pomidorowa | 15 | pomidory, bulion, śmietana, bazylia
+Ryba Grillowana | 45 | ryba, cytryna, zioła, oliwa
+Risotto | 35 | ryż, pieniążki, białe wino, parmezan
+Kurczak Teriyaki | 32 | kurczak, sos teriyaki, ryż, sezam

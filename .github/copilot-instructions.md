@@ -39,5 +39,11 @@ dania itp)
 oczekiwaniu na naciśnięcie dowolnego klawisza
 
 
+NIE GENERUJ INSTRUKCJI W PLIKU MD
+
+Uruchamij tym 
+clang++ main.cpp -o main && ./main 
+
+
 
 

@@ -1,4 +1,5 @@
-
+# Uruchamiaj tym 
+clang++ main.cpp -o main && ./main 
 
 ## Project Context
 This is simple C++ console application for managing a tavern/restaurant with order management, menu.
@@ -38,3 +39,8 @@ dostawy/przygotowania
 dania itp)
 * aplikacja ulega zamknięciu po wyświetleniu komunikatu i
 oczekiwaniu na naciśnięcie dowolnego klawisza
+
+
+
+
+
