@@ -1,98 +1,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <iomanip>  // Do formatowania wydruku (wyrównanie liczb)
 
 using namespace std;
 
-// =====================================================
-// KROK 1: Definicje struktur danych
-// =====================================================
-
-// Struktura do przechowywania danych restauracji
 struct Restaurant {
-    string name;        // Nazwa restauracji
-    string address;     // Adres restauracji
-    string owner;       // Właściciel restauracji
-    int openingHour;    // Godzina otwarcia (np. 10)
-    int closingHour;    // Godzina zamknięcia (np. 23)
+    string name;        
+    string address;     
+    string owner;       
+    int openingHour;    
+    int closingHour;    
 };
 
-// Struktura do przechowywania danych klienta
 struct Customer {
-    string name;                // Imię klienta
-    bool isDelivery;           // true = dostawa, false = na miejscu
-    int tableNumber;           // Numer stolika (jeśli na miejscu)
-    string deliveryAddress;    // Adres dostawy (jeśli dostawa)
-    int deliveryHour;          // Preferowana godzina dostawy
+    string name;               
+    bool isDelivery;           
+    int tableNumber;           
+    string deliveryAddress;    
+    int deliveryHour;          
 };
 
-// =====================================================
-// KROK 2: Deklaracje funkcji
-// =====================================================
+// FUNKCJE 
 
-// Funkcja do wyświetlania danych restauracji
-void displayRestaurantInfo(const Restaurant& restaurant);
-
-// Funkcja do zbierania danych klienta (krok 1 - osoba 1)
-void getCustomerInfo(Customer& customer, const Restaurant& restaurant);
-
-// Funkcja pomocnicza do sprawdzenia czy godzina jest w zakresie działania
-bool isValidHour(int hour, const Restaurant& restaurant);
-
-// Funkcja do wyświetlenia menu (będzie rozwinięta w dalszych krokach)
-void displayMenu();
-
-// =====================================================
-// KROK 3: Główna funkcja programu
-// =====================================================
-
-int main() {
-    // Ustawienie restauracji - dane na sztywno (hardcoded)
-    Restaurant myRestaurant;
-    myRestaurant.name = "Taverna Pod Dębem";
-    myRestaurant.address = "ul. Kwiatowa";
-    myRestaurant.owner = "Jan Kowalski";
-    myRestaurant.openingHour = 10;    // Otwarte od 10:00
-    myRestaurant.closingHour = 23;    // Zamknięte o 23:00
-
-    // Utworzenie obiektu klienta
-    Customer customer;
-
-    // Wyświetlenie danych restauracji
-    cout << "===============================================" << endl;
-    cout << "        WITAJ W SYSTEMIE ZAMÓWIANIA DAŃ        " << endl;
-    cout << "===============================================" << endl;
-    cout << endl;
-
-    // OSOBA 1 - Wyświetlanie danych restauracji
-    displayRestaurantInfo(myRestaurant);
-    cout << endl;
-
-    // OSOBA 1 - Zbieranie danych klienta
-    getCustomerInfo(customer, myRestaurant);
-    cout << endl;
-
-    // OSOBA 2 - Menu (placeholder na razie)
-    cout << "KROK 2: Wybierz swoje dania" << endl;
-    displayMenu();
-    cout << endl;
-
-    // OSOBA 3 - Podsumowanie
-    cout << "===============================================" << endl;
-    cout << "            PODSUMOWANIE ZAMÓWIENIA           " << endl;
-    cout << "===============================================" << endl;
-    cout << "To będzie zrobione w kolejnym etapie" << endl;
-    cout << endl;
-
-    return 0;  // Program kończy się (zwraca 0 = brak błędów)
-}
-
-// =====================================================
-// KROK 4: Implementacje funkcji
-// =====================================================
-
-// Wyświetla informacje o restauracji
 void displayRestaurantInfo(const Restaurant& restaurant) {
     cout << "--- DANE RESTAURACJI ---" << endl;
     cout << "Nazwa: " << restaurant.name << endl;
@@ -102,7 +31,10 @@ void displayRestaurantInfo(const Restaurant& restaurant) {
          << restaurant.closingHour << ":00" << endl;
 }
 
-// Zbiera dane od klienta
+bool isValidHour(int hour, const Restaurant& restaurant) {
+    return (hour >= restaurant.openingHour && hour <= restaurant.closingHour);
+}
+
 void getCustomerInfo(Customer& customer, const Restaurant& restaurant) {
     cout << "--- PODAJ SWOJE DANE ---" << endl;
 
@@ -176,9 +108,7 @@ void getCustomerInfo(Customer& customer, const Restaurant& restaurant) {
 }
 
 // Sprawdza czy godzina jest w zakresie działania restauracji
-bool isValidHour(int hour, const Restaurant& restaurant) {
-    return (hour >= restaurant.openingHour && hour <= restaurant.closingHour);
-}
+
 
 // Wyświetla menu (na razie tylko placeholder)
 void displayMenu() {
@@ -190,6 +120,45 @@ void displayMenu() {
     cout << "(system menu będzie zrobiony w następnym etapie)" << endl;
 }
 
+int main() {
+    
+    Restaurant myRestaurant;
+    myRestaurant.name = "Taverna Pod Dębem";
+    myRestaurant.address = "ul. Kwiatowa";
+    myRestaurant.owner = "Jan Kowalski";
+    myRestaurant.openingHour = 10;    
+    myRestaurant.closingHour = 23;    
 
+    // Utworzenie obiektu klienta
+    Customer customer;
+
+
+    cout << "===============================================" << endl;
+    cout << "        WITAJ W SYSTEMIE ZAMÓWIANIA DAŃ        " << endl;
+    cout << "===============================================" << endl;
+    cout << endl;
+
+
+    displayRestaurantInfo(myRestaurant);
+    cout << endl;
+
+  
+    getCustomerInfo(customer, myRestaurant);
+    cout << endl;
+
+  
+    cout << "KROK 2: Wybierz swoje dania" << endl;
+    displayMenu();
+    cout << endl;
+
+   
+    cout << "===============================================" << endl;
+    cout << "            PODSUMOWANIE ZAMÓWIENIA           " << endl;
+    cout << "===============================================" << endl;
+    cout << "To będzie zrobione w kolejnym etapie" << endl;
+    cout << endl;
+
+    return 0;  
+}
 
 
