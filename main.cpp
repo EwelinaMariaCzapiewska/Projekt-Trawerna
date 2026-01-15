@@ -4,14 +4,6 @@
 
 using namespace std;
 
-struct Restaurant {
-    string name;        
-    string address;     
-    string owner;       
-    int openingHour;    
-    int closingHour;    
-};
-
 struct Customer {
     string name;               
     bool isDelivery;           
@@ -20,25 +12,31 @@ struct Customer {
     int deliveryHour;          
 };
 
+// USTAWIENIA
+
+string restauracja_nazwa = "Restauracja Trawerna";
+string restauracja_adres = "ul. Kwiatowa";
+string restauracja_owner = "Jan Kowalski";
+int restauracja_start = 10;    
+int restauracja_koniec = 23;  
+
 // FUNKCJE 
 
-void displayRestaurantInfo(const Restaurant& restaurant) {
+void displayRestaurantInfo() {
     cout << "--- DANE RESTAURACJI ---" << endl;
-    cout << "Nazwa: " << restaurant.name << endl;
-    cout << "Adres: " << restaurant.address << endl;
-    cout << "Właściciel: " << restaurant.owner << endl;
-    cout << "Godziny otwarcia: " << restaurant.openingHour << ":00 - "
-         << restaurant.closingHour << ":00" << endl;
+    cout << "Nazwa: " << restauracja_nazwa << endl;
+    cout << "Adres: " << restauracja_adres << endl;
+    cout << "Właściciel: " << restauracja_owner << endl;
+    cout << "Godziny otwarcia: " << restauracja_start << ":00 - " << restauracja_koniec << ":00" << endl;
+
 }
 
-bool isValidHour(int hour, const Restaurant& restaurant) {
-    return (hour >= restaurant.openingHour && hour <= restaurant.closingHour);
+bool isValidHour(int hour) {
+    return (hour >= restauracja_start && hour <= restauracja_koniec);
 }
 
-void getCustomerInfo(Customer& customer, const Restaurant& restaurant) {
+void getCustomerInfo(Customer& customer) {
     cout << "--- PODAJ SWOJE DANE ---" << endl;
-
-    // Krok 1: Imię klienta
     cout << "Podaj swoje imię: ";
     getline(cin, customer.name);  // Czyta całą linię (przechwyci spacje)
     cout << endl;
@@ -83,18 +81,18 @@ void getCustomerInfo(Customer& customer, const Restaurant& restaurant) {
             bool validHour = false;
             while (!validHour) {
                 cout << "Podaj preferowaną godzinę dostawy ("
-                     << restaurant.openingHour << "-"
-                     << restaurant.closingHour << "): ";
+                     << restauracja_start << "-"
+                     << restauracja_koniec << "): ";
                 cin >> customer.deliveryHour;
                 cout << endl;
 
                 // Sprawdzenie czy godzina jest w zakresie
-                if (isValidHour(customer.deliveryHour, restaurant)) {
+                if (isValidHour(customer.deliveryHour)) {
                     validHour = true;
                     cout << "✓ Dostawa o godzinie " << customer.deliveryHour << ":00" << endl;
                 } else {
-                    cout << "✗ Godzina musi być między " << restaurant.openingHour
-                         << " a " << restaurant.closingHour << "!" << endl;
+                    cout << "✗ Godzina musi być między " << restauracja_start
+                         << " a " << restauracja_koniec << "!" << endl;
                     cout << endl;
                 }
             }
@@ -122,12 +120,7 @@ void displayMenu() {
 
 int main() {
     
-    Restaurant myRestaurant;
-    myRestaurant.name = "Taverna Pod Dębem";
-    myRestaurant.address = "ul. Kwiatowa";
-    myRestaurant.owner = "Jan Kowalski";
-    myRestaurant.openingHour = 10;    
-    myRestaurant.closingHour = 23;    
+     
 
     // Utworzenie obiektu klienta
     Customer customer;
@@ -139,11 +132,11 @@ int main() {
     cout << endl;
 
 
-    displayRestaurantInfo(myRestaurant);
+    displayRestaurantInfo();
     cout << endl;
 
   
-    getCustomerInfo(customer, myRestaurant);
+    getCustomerInfo(customer);
     cout << endl;
 
   

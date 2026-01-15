@@ -1,5 +1,6 @@
 # Uruchamiaj tym 
 clang++ main.cpp -o main && ./main 
+clang++ test.cpp -o test && ./test
 
 ## Project Context
 This is simple C++ console application for managing a tavern/restaurant with order management, menu.
