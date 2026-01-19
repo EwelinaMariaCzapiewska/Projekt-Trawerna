@@ -1,6 +1,3 @@
-# Dane Restauracji - menu.txt
-# Format: nazwa | cena | główne składniki
-
 Pizza Margherita | 25 | mąka, ser, pomidory, oliwa
 Pasta Carbonara | 30 | mąka, jajko, boczek, parmezan
 Stek Wołowy | 50 | wołowina, sól, pieprz, czosnęk
