@@ -107,12 +107,15 @@ void takeOrder(Customer& customer) {
 
     cout << "\n--- ZAMAWIANIE (0 konczy) ---" << endl;
     while (true) {
-        int choice = getNumber("Nr dania > ", 0, menu.size()); // Używamy max jako rozmiar menu!
+        int choice = getNumber("Nr dania > ", 0, menu.size()); 
 
         if (choice == 0) break;
 
         MenuItem item = menu[choice - 1];
-        customer.order.push_back(item);
-        cout << "+ " << item.name << endl;
+        int sztuki = getNumber("Ile sztuk > ", 0, 100); 
+        for (int i = 0; i < sztuki; i++){
+            customer.order.push_back(item);
+        }
+        cout << "+ " << item.name << " * " << sztuki << endl;
     }
 }
