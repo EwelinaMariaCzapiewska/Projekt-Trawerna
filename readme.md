@@ -1,6 +1,5 @@
 # Uruchamiaj tym 
-* clang++ main.cpp OrderManager.cpp Restaurant.cpp -o restauracja
-* ./restauracja
+clang++ main.cpp OrderManager.cpp Restaurant.cpp -o restauracja && ./restauracja
 
 ## Project Context
 This is simple C++ console application for managing a tavern/restaurant with order management, menu.
