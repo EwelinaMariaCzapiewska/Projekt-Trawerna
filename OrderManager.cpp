@@ -79,12 +79,12 @@ void getCustomerInfo(Customer& customer) {
         customer.isDelivery = true;
         cout << "Podaj adres: ";
         getline(cin, customer.deliveryAddress);
-        customer.deliveryHour = getNumber("Godzina dostawy (" + to_string(restauracja_start) + "-" + to_string(restauracja_koniec) + "): ", restauracja_start, restauracja_koniec);
+        customer.deliveryHour = getNumber("Godzina dostawy (" + to_string(restauracja.startHour) + "-" + to_string(restauracja.endHour) + "): ", restauracja.startHour, restauracja.endHour);
         cout << "OK, dostawa na " << customer.deliveryHour << ":00" << endl;
     }
 }
 
-void displaySummary(const Customer& c) {
+void displaySummary(Customer& c) {
     cout << "\n=== PODSUMOWANIE ===" << endl;
     cout << "Klient: " << c.name << endl;
 

@@ -10,11 +10,15 @@ struct MenuItem {
     std::string ingredients;
 };
 
-extern std::string restauracja_nazwa;
-extern std::string restauracja_adres;
-extern std::string restauracja_owner;
-extern int restauracja_start;
-extern int restauracja_koniec;
+struct Restaurant {
+    std::string name;
+    std::string address;
+    std::string owner;
+    int startHour;
+    int endHour;
+};
+
+extern Restaurant restauracja;
 
 void displayRestaurantInfo();
 bool isValidHour(int hour);

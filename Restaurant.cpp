@@ -4,20 +4,22 @@
 
 using namespace std;
 
-string restauracja_nazwa = "Restauracja Trawerna";
-string restauracja_adres = "ul. Kwiatowa";
-string restauracja_owner = "Jan Kowalski";
-int restauracja_start = 10;
-int restauracja_koniec = 23;
+Restaurant restauracja = {
+    "Restauracja Trawerna",
+    "ul. Kwiatowa",
+    "Jan Kowalski",
+    10,
+    23
+};
 
 void displayRestaurantInfo() {
     cout << "--- DANE RESTAURACJI ---" << endl;
-    cout << "Nazwa: " << restauracja_nazwa << endl;
-    cout << "Adres: " << restauracja_adres << endl;
-    cout << "Właściciel: " << restauracja_owner << endl;
-    cout << "Godziny otwarcia: " << restauracja_start << ":00 - " << restauracja_koniec << ":00" << endl;
+    cout << "Nazwa: " << restauracja.name << endl;
+    cout << "Adres: " << restauracja.address << endl;
+    cout << "Właściciel: " << restauracja.owner << endl;
+    cout << "Godziny otwarcia: " << restauracja.startHour << ":00 - " << restauracja.endHour << ":00" << endl;
 }
 
 bool isValidHour(int hour) {
-    return (hour >= restauracja_start && hour <= restauracja_koniec);
+    return (hour >= restauracja.startHour && hour <= restauracja.endHour);
 }
