@@ -119,3 +119,42 @@ void takeOrder(Customer& customer) {
         cout << "+ " << item.name << " * " << sztuki << endl;
     }
 }
+
+void saveOrderToFile(Customer& c) {
+    string filename = "rachunek_" + c.name + ".txt";
+
+    ofstream file(filename);
+
+    if (file.is_open()) {
+        file << "=== RACHUNEK KOŃCOWY ===" << endl;
+        file << "Klient: " << c.name << endl;
+
+        if (c.isDelivery) {
+            file << "Dostawa na adres: " << c.deliveryAddress << endl;
+            file << "Godzina dostawy: " << c.deliveryHour << ":00" << endl;
+        } else {
+            file << "Zamowienie na miejscu." << endl;
+            file << "Stolik numer: " << c.tableNumber << endl;
+        }
+
+        file << "--------------------------------" << endl;
+        file << "ZAMOWIONE POZYCJE:" << endl;
+
+        int total = 0;
+
+        for (int i = 0; i < c.order.size(); i++) {
+            file << i + 1 << ". " << c.order[i].name
+                 << " \t| " << c.order[i].price << " PLN" << endl;
+            total += c.order[i].price;
+        }
+
+        file << "--------------------------------" << endl;
+        file << "LACZNIE DO ZAPLATY: " << total << " PLN" << endl;
+        file << "================================" << endl;
+
+        file.close();
+        cout << "\n[SUKCES] Rachunek zostal zapisany w pliku: " << filename << endl;
+    } else {
+        cout << "\n[BLAD] Nie udalo sie utworzyc pliku z rachunkiem!" << endl;
+    }
+}
