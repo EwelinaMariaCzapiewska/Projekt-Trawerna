@@ -103,20 +103,33 @@ void displaySummary(Customer& c) {
 
 void takeOrder(Customer& customer) {
     vector<MenuItem> menu = loadMenu();
-    if (menu.empty()) { cout << "Blad menu." << endl; return; }
+    if (menu.empty()) {
+        cout << "Blad menu." << endl;
+        return;
+    }
 
     cout << "\n--- ZAMAWIANIE (0 konczy) ---" << endl;
     while (true) {
-        int choice = getNumber("Nr dania > ", 0, menu.size()); 
+        int choice = getNumber("Nr dania > ", 0, menu.size());
 
-        if (choice == 0) break;
+        if (choice == 0) {
+            if (customer.order.empty()) {
+                cout << "[BLAD] Musisz wybrac minimum jedna pozycje z menu!" << endl;
+                continue;
+            }
+            break;
+        }
 
         MenuItem item = menu[choice - 1];
-        int sztuki = getNumber("Ile sztuk > ", 0, 100); 
+        int sztuki = getNumber("Ile sztuk > ", 0, 100);
+
         for (int i = 0; i < sztuki; i++){
             customer.order.push_back(item);
         }
-        cout << "+ " << item.name << " * " << sztuki << endl;
+
+        if (sztuki > 0) {
+            cout << "+ " << item.name << " * " << sztuki << endl;
+        }
     }
 }
 
