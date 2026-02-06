@@ -33,6 +33,20 @@ int main() {
     cout << "===============================================" << endl;
     cout << endl;
     displaySummary(customer);
+    
+    if (!confirmOrder(customer)) {
+        cout << "\nWznowienie zamawiania..." << endl << endl;
+        displayMenu();
+        cout << endl;
+        takeOrder(customer);
+        cout << "===============================================" << endl;
+        cout << "            PODSUMOWANIE ZAMÓWIENIA           " << endl;
+        cout << "===============================================" << endl;
+        cout << endl;
+        displaySummary(customer);
+        confirmOrder(customer);
+    }
+    
     saveOrderToFile(customer);
 
     return 0;

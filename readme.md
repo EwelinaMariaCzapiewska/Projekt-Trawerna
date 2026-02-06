@@ -25,19 +25,19 @@ porcje oraz główne składniki
 ✓ użytkownik może wybrać co najmniej 1 danie
 ✓ użytkownik ma możliwość wybrania liczby porcji danego dania
 (liczby całkowite w zakresie)
-* użytkownik ma możliwość usunięcia wybranej pozycji *
+✓  użytkownik ma możliwość usunięcia wybranej pozycji *
 ✓ po każdym wyborze cena zbiorcza jest aktualizowana
-* po wprowadzeniu wyborów, należy je potwierdzić
-* użytkownik może wyjść z aplikacji w dowolnym momencie
+✓  po wprowadzeniu wyborów, należy je potwierdzić
+✓  użytkownik może wyjść z aplikacji w dowolnym momencie
 
 
 # Podsumowanie zamówienia (osoba 3)
 
-* aplikacja wyświetla informacje o planowanym czasie
+✓ aplikacja wyświetla informacje o planowanym czasie
 dostawy/przygotowania
-* aplikacja zapisuje rachunek w pliku .txt (kwota, zamówione
+✓  aplikacja zapisuje rachunek w pliku .txt (kwota, zamówione
 dania itp)
-* aplikacja ulega zamknięciu po wyświetleniu komunikatu i
+✓  aplikacja ulega zamknięciu po wyświetleniu komunikatu i
 oczekiwaniu na naciśnięcie dowolnego klawisza
 
 

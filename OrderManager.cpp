@@ -88,8 +88,16 @@ void displaySummary(Customer& c) {
     cout << "\n=== PODSUMOWANIE ===" << endl;
     cout << "Klient: " << c.name << endl;
 
-    if (c.isDelivery) cout << "Dostawa na: " << c.deliveryAddress << " (godz. " << c.deliveryHour << ":00)" << endl;
-    else              cout << "Na miejscu, stolik: " << c.tableNumber << endl;
+    if (c.isDelivery) {
+        cout << "Dostawa na: " << c.deliveryAddress << " (godz. " << c.deliveryHour << ":00)" << endl;
+    } else {
+        int waitTime = c.order.size() * 5; // 5 minut na danie
+        int hours = waitTime / 60;
+        int minutes = waitTime % 60;
+        cout << "Na miejscu, stolik: " << c.tableNumber << " Czas oczekiwania: ";
+        if (hours > 0) cout << hours << " godz. ";
+        cout << minutes << " minut" << endl;
+    }
 
     int total = 0;
     cout << "--------------------" << endl;
@@ -99,6 +107,42 @@ void displaySummary(Customer& c) {
     }
     cout << "--------------------" << endl;
     cout << "RAZEM: " << total << " PLN" << endl;
+    cout << "====================" << endl << endl;
+}
+
+bool confirmOrder(Customer& c) {
+    while (true) {
+        cout << "Czy na pewno? (1. Tak, 2. Nie) > ";
+        int confirm = getNumber("", 1, 2);
+        
+        if (confirm == 1) {
+            return true;
+        } else {
+            cout << "\n--- OPCJE ---" << endl;
+            cout << "1. Edytuj zamowienie" << endl;
+            cout << "2. Anuluj zamowienie" << endl;
+            int choice = getNumber("Twoj wybor: ", 1, 2);
+            
+            if (choice == 1) {
+                // Edycja zamówienia - usuwanie pozycji
+                cout << "\n--- POZYCJE DO USUNIECIA ---" << endl;
+                for (int i = 0; i < c.order.size(); i++) {
+                    cout << i + 1 << ". " << c.order[i].name << " (" << c.order[i].price << " PLN)" << endl;
+                }
+                int toRemove = getNumber("Ktora pozycje usunac (0 aby wrócić)? > ", 0, c.order.size());
+                if (toRemove > 0) {
+                    c.order.erase(c.order.begin() + toRemove - 1);
+                    cout << "[OK] Pozycja usunieta." << endl;
+                }
+                displaySummary(c);
+            } else {
+                // Anuluj zamówienie
+                cout << "[ANULOWANO] Zamowienie zostalo anulowane." << endl;
+                c.order.clear();
+                return false;
+            }
+        }
+    }
 }
 
 void takeOrder(Customer& customer) {
