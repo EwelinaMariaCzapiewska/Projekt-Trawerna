@@ -103,19 +103,71 @@ void displaySummary(Customer& c) {
 
 void takeOrder(Customer& customer) {
     vector<MenuItem> menu = loadMenu();
-    if (menu.empty()) { cout << "Blad menu." << endl; return; }
+    if (menu.empty()) {
+        cout << "Blad menu." << endl;
+        return;
+    }
 
     cout << "\n--- ZAMAWIANIE (0 konczy) ---" << endl;
     while (true) {
-        int choice = getNumber("Nr dania > ", 0, menu.size()); 
+        int choice = getNumber("Nr dania > ", 0, menu.size());
 
-        if (choice == 0) break;
+        if (choice == 0) {
+            if (customer.order.empty()) {
+                cout << "[BLAD] Musisz wybrac minimum jedna pozycje z menu!" << endl;
+                continue;
+            }
+            break;
+        }
 
         MenuItem item = menu[choice - 1];
-        int sztuki = getNumber("Ile sztuk > ", 0, 100); 
+        int sztuki = getNumber("Ile sztuk > ", 0, 100);
+
         for (int i = 0; i < sztuki; i++){
             customer.order.push_back(item);
         }
-        cout << "+ " << item.name << " * " << sztuki << endl;
+
+        if (sztuki > 0) {
+            cout << "+ " << item.name << " * " << sztuki << endl;
+        }
+    }
+}
+
+void saveOrderToFile(Customer& c) {
+    string filename = "rachunek_" + c.name + ".txt";
+
+    ofstream file(filename);
+
+    if (file.is_open()) {
+        file << "=== RACHUNEK KOŃCOWY ===" << endl;
+        file << "Klient: " << c.name << endl;
+
+        if (c.isDelivery) {
+            file << "Dostawa na adres: " << c.deliveryAddress << endl;
+            file << "Godzina dostawy: " << c.deliveryHour << ":00" << endl;
+        } else {
+            file << "Zamowienie na miejscu." << endl;
+            file << "Stolik numer: " << c.tableNumber << endl;
+        }
+
+        file << "--------------------------------" << endl;
+        file << "ZAMOWIONE POZYCJE:" << endl;
+
+        int total = 0;
+
+        for (int i = 0; i < c.order.size(); i++) {
+            file << i + 1 << ". " << c.order[i].name
+                 << " \t| " << c.order[i].price << " PLN" << endl;
+            total += c.order[i].price;
+        }
+
+        file << "--------------------------------" << endl;
+        file << "LACZNIE DO ZAPLATY: " << total << " PLN" << endl;
+        file << "================================" << endl;
+
+        file.close();
+        cout << "\n[SUKCES] Rachunek zostal zapisany w pliku: " << filename << endl;
+    } else {
+        cout << "\n[BLAD] Nie udalo sie utworzyc pliku z rachunkiem!" << endl;
     }
 }

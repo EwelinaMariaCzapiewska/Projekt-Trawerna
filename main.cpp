@@ -33,6 +33,7 @@ int main() {
     cout << "===============================================" << endl;
     cout << endl;
     displaySummary(customer);
+    saveOrderToFile(customer);
 
     return 0;
 }
